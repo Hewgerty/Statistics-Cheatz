@@ -1,0 +1,32 @@
+
+#This function will take a list of numbers and perform a goodness of fit test, then return your test statistic rounded to 3 digits.
+def getGOF(listOfNums):
+    totalAmount = 0
+    totalValues = len(listOfNums)
+    for i in listOfNums:
+        totalAmount+= i
+    expectedValue = totalAmount / float(totalValues)
+    testStatistic = 0
+    for num in listOfNums:
+        curDifference = num - expectedValue
+        curExponent = curDifference**2
+        curQuotient = curExponent/ float(expectedValue)
+        testStatistic += curQuotient
+    return round(testStatistic,3)
+
+
+#This function will take a list of numbers and a list of given proportions in order to perform a goodness of fit test, then return your test statistic rounded to 3 digits.
+def givenGOF(listOfNums, listOfProportions):
+    totalAmount = 0
+    for i in listOfNums:
+        totalAmount += i
+    testStatistic = 0
+    index = 0
+    for num in listOfNums:
+        curExpected = totalAmount * listOfProportions[index]
+        curDifference = num - curExpected
+        curExponent = curDifference **2
+        curQuotient = curExponent / float(curExpected)
+        testStatistic += curQuotient
+        index += 1
+    return round(testStatistic,3)
