@@ -1,7 +1,7 @@
 
 
 print('Welcome to the goodness of fit calculator! Please enter a comma separated list of numbers that you are trying to test!')
-answer = input()
+
 
 
 #This function will take a list of numbers and perform a goodness of fit test, then return your test statistic rounded to 3 digits.
@@ -37,4 +37,7 @@ def givenGOF(listOfNums, listOfProportions):
     return round(testStatistic,3)
     
     
-    print(getGOF(answer))
+    while True:
+        print('Enter a list of numbers to be tested.')
+        answer = input()
+        print(str(getGOF(answer)))
