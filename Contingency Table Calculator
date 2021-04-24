@@ -1,0 +1,40 @@
+#Caution Work in Progress!!!
+
+
+
+
+def testContingencyTable(table):
+    tableTotal = 0
+    tableLength = len(table[0])
+    rowValues = []
+    columnValues = []
+    for rows in table:
+        rowValues.append(sum(rows))
+        for values in rows:
+            tableTotal += values
+    
+    for i in range(0,tableLength):
+        curColumn = 0
+        for rows in table:
+            curColumn += rows[i]
+        columnValues.append(curColumn)
+    
+    rowNum = 0
+    columnNum = 0
+    testStatistic = 0
+    for rows in table:
+        for values in rows:
+            curExpected = (rowValues[rowNum] * columnValues[columnNum]) / tableTotal
+            #print(curExpected)
+            curDifference = values - curExpected
+            curSquare = curDifference ** 2
+            curQuotient = curSquare / curExpected
+            testStatistic += curQuotient
+            columnNum += 1
+        columnNum = 0
+        rowNum += 1
+    return round(testStatistic,3)
+
+
+#print(testContingencyTable([[88,48,42],[15,4,10]]))
+
